@@ -101,10 +101,11 @@ RUN apt-get update && \
   curl -L -o /docker-entrypoint.sh https://raw.githubusercontent.com/AkihiroSuda/containerized-systemd/6ced78a9df65c13399ef1ce41c0bedc194d7cff6/docker-entrypoint.sh && \
   chmod +x /docker-entrypoint.sh
 # apk-pre.d is for pre-installed apks, /apk.d for the mountpoint for user-specific apks
-RUN mkdir -p /apk-pre.d /apk.d && \
+RUN mkdir -p /apk-pre.d /apk.d
+# && \
   #curl -L -o /apk-pre.d/FDroid.apk https://f-droid.org/FDroid.apk && \
   #curl -L -o /apk-pre.d/firefox.apk https://ftp.mozilla.org/pub/mobile/releases/68.9.0/android-x86_64/en-US/fennec-68.9.0.en-US.android-x86_64.apk && \
-  chmod 444 /apk-pre.d/*
+  #chmod 444 /apk-pre.d/*
 COPY --from=android-img /android.img /aind-android.img
 COPY --from=anbox /anbox-binary /usr/local/bin/anbox
 COPY --from=anbox /anbox/scripts/anbox-bridge.sh /usr/local/share/anbox/anbox-bridge.sh
